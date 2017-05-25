@@ -1,0 +1,24 @@
+///////////////////////////////////////////////////
+// Filename: README
+// Author: Esteban Zamora Alvarado
+// PRIS-LAB  
+///////////////////////////////////////////////////
+
+Clustering algorithms C++ implementation (GMM and K-Means)
+
+To run the tests execute the following commands:
+
+   $ make
+   $ cd bin
+   $ ./<test_name>
+
+R plotting tests are disabled by default. To run these tests
+you need a default R installation with Rcpp and RInside
+packages (in GNU/Linux). In that case execute:
+
+   $ make RCPP_RINSIDE=1
+   $ cd bin
+   $ ./<test_name>
+
+Note: These plotting tests are located in tests/plot_tests/
+directory
