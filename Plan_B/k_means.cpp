@@ -40,36 +40,48 @@ int main () {
 	Lista.push_back(d);
 	Lista.push_back(e);
 	Lista.push_back(f);
-
+ 
 // Definiendo Centros3
 	punto_3D C1 = punto_3D(0.0,0.0,0.0);
 	punto_3D C2 = punto_3D(11.0,11.0,11.0);
 	punto_3D C3 = punto_3D(100.0,100.0,100.0);
 
 // Creando una lista de centros
-	vector<punto_3D> Lista_centro;
+	vector<punto_3D> centroides;		// Vector que contiene los centros
 	Lista_centro.push_back(C1);
 	Lista_centro.push_back(C2);
 	Lista_centro.push_back(C3);
 
-	punto_3D centro_actual = Lista_centro[0];
+	punto_3D centro_actual = centroides[0]; // Para decir a cual centro pertenecen
+	int num_centro = j			// Variable elige cual posición del centro en el vector centroides
+	vector<int> asociada ;			//  Lista que me dice a cual centro pertenece el cada punto (1,2,3,1)
 
+
+// Asignar los centros
 	for(int i = 0; i< Lista.size(); i ++) {
-		for(int j = 0; j< Lista_centro.size(); j++){
+		for(int j = 0; j< centroides.size(); j++){
 
-			punto_3D centro_prueba = Lista_centro[j]; 
+			punto_3D centro_prueba = Lista_centro[j]; 	// Para comparar con otros centros
 
 			double dist_centro = dist_euclidiana(Lista[i], centro_prueba);
 			double dist_actual = dist_euclidiana(Lista[i], centro_actual);
 
 			if(dist_centro < dist_actual){
 				centro_actual = centro_prueba;
+				int num_centro = j;
 			}
 		}
+		
+		asociada.push_back(num_centro);
 
 		cout << "Centro de punto " << i << " es" <<endl;	
 		centro_actual.print_punto();	
 	}		
+
+
+// Recalcular Centros
+
+
 
 return 0;
 

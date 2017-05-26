@@ -10,6 +10,7 @@ using namespace std;
 class punto_3D {
 	private:
 		vector<double> componentes;
+		
 
 	public:
 		punto_3D ( double, double, double);
