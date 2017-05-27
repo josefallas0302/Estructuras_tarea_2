@@ -35,10 +35,10 @@ int main () {
 
 	//Crea un vector de punto_3D (datos) random
 	for(int i=0; i<data_num; i++){
-		double x1 = (0+rand()%(10000-0))/13;
-		double x2 = (0+rand()%(10000-0))/7;
-		double x3 = (0+rand()%(10000-0))/11;
-		
+		double x1 = (0+rand()%(10000-0))*0.13;
+		double x2 = (0+rand()%(10000-0))*0.7;
+		double x3 = (0+rand()%(10000-0))*0.11;
+
 		punto_3D a  = punto_3D(x1, x2, x3);
 		Lista.push_back(a);
 	}
@@ -79,8 +79,8 @@ int main () {
 		
 		asociada.push_back(num_centro);
 
-		cout << "Centro de punto " << i << " es" <<endl;	
-		centro_actual.print_punto();	
+		//cout << "Centro de punto " << i << " es" <<endl;	
+		//centro_actual.print_punto();	
 	}		
 
 
