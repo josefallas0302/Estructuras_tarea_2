@@ -4,6 +4,9 @@
 #include <stdio.h>
 #include <math.h>
 #include "punto_3D.h"
+#include <stdlib.h>
+#include <time.h>
+
 
 using namespace std;
 
@@ -21,36 +24,38 @@ int dist_euclidiana (punto_3D a, punto_3D centro){
 
 int main () {
 
-// Estoy creando algunos puntos ahí MIEDO
+	int data_num; //data_num es la cantidad de datos con la que se esta trabajando
+	int centroide_num; //centroide_num es la cantidad de centroides con la que se esta trabajando
+	cout << "Introduzca el número de datos con los cual se va a trabajar" << endl;
+	cin >> data_num; 
+	cout << "Introduzca el número de centroides con los cual se va a trabajar" << endl;
+	cin >> centroide_num; 
 
-	punto_3D a  = punto_3D(0.0, 0.0, 0.0);
-	punto_3D b  = punto_3D(1.0,1.0,1.0);
-	punto_3D c  = punto_3D(10.0,15.0,10.0);
-	punto_3D d  = punto_3D(25.0,25.0,25.0);
-	punto_3D e  = punto_3D(90.0,100.0,200.0);
-	punto_3D f  = punto_3D(120.0,100.0,200.0);
+	vector<punto_3D> Lista; //Lista de datos
 
-// Creando una Lista de puntos
-	vector <punto_3D> Lista;
+	//Crea un vector de punto_3D (datos) random
+	for(int i=0; i<data_num; i++){
+		double x1 = (0+rand()%(10000-0))/13;
+		double x2 = (0+rand()%(10000-0))/7;
+		double x3 = (0+rand()%(10000-0))/11;
+		
+		punto_3D a  = punto_3D(x1, x2, x3);
+		Lista.push_back(a);
+	}
 
-// Metiendo los puntos a la lista
-	Lista.push_back(a);
-	Lista.push_back(b);
-	Lista.push_back(c);
-	Lista.push_back(d);
-	Lista.push_back(e);
-	Lista.push_back(f);
  
-// Definiendo Centros3
-	punto_3D C1 = punto_3D(0.0,0.0,0.0);
-	punto_3D C2 = punto_3D(11.0,11.0,11.0);
-	punto_3D C3 = punto_3D(100.0,100.0,100.0);
+	vector<punto_3D> centroides; //Lista de centroides
 
-// Creando una lista de centros
-	vector<punto_3D> centroides;		// Vector que contiene los centros
-	centroides.push_back(C1);
-	centroides.push_back(C2);
-	centroides.push_back(C3);
+	//Crea un vector de punto_3D (centroides) random inicialmente
+	for(int i=0; i<centroide_num; i++){
+		double x1 = (0+rand()%(10000-0))/13;
+		double x2 = (0+rand()%(10000-0))/7;
+		double x3 = (0+rand()%(10000-0))/11;
+		
+		punto_3D a  = punto_3D(x1, x2, x3);
+		centroides.push_back(a);
+	}
+
 
 	punto_3D centro_actual = centroides[0]; // Para decir a cual centro pertenecen
 	int num_centro = 0;				// Variable elige cual posición del centro en el vector centroides
