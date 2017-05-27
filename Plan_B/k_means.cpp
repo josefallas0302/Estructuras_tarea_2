@@ -58,50 +58,63 @@ int main () {
 
 
 	punto_3D centro_actual = centroides[0]; // Para decir a cual centro pertenecen
-	int num_centro = 0;				// Variable elige cual posición del centro en el vector centroides
-	vector<int> asociada ;			//  Lista que me dice a cual centro pertenece el cada punto (1,2,3,1)
+	int num_centro = 0;			// Variable elige cual posición del centro en el vector centroides
 
+	vector<int> asociada;			//  Lista que me dice a cual centro pertenece el cada punto (1,2,3,1)
+	for (int i = 0 ; i<Lista.size(); i++){
+		asociada.push_back(0);
+	}
+
+	vector<int> copia;			// Para saber si tengo que seguir iterando
+
+	for (int i = 0 ; i<Lista.size(); i++){
+		copia.push_back(1);
+	}
+
+	while(asociada != copia){
+	
+	copia = asociada;
 
 // Asignar los centros
-	for(int i = 0; i< Lista.size(); i ++) {
-		for(int j = 0; j< centroides.size(); j++){
-
-			punto_3D centro_prueba = centroides[j]; 	// Para comparar con otros centros
-
-			double dist_centro = dist_euclidiana(Lista[i], centro_prueba);
-			double dist_actual = dist_euclidiana(Lista[i], centro_actual);
-
-			if(dist_centro < dist_actual){
-				centro_actual = centro_prueba;
-				num_centro = j;
-			}
-		}
-		
-		asociada.push_back(num_centro);
-		cout << "El punto " << endl;
-		Lista[i].print_punto();
-
-
-		//cout << "Centro de punto " << i << " es" <<endl;	
-		//centro_actual.print_punto();	
-		cout << " esta asociado al centro " << num_centro << endl; 	
+		for(int i = 0; i< Lista.size(); i ++) {
+			for(int j = 0; j< centroides.size(); j++){
 	
+				punto_3D centro_prueba = centroides[j]; 	// Para comparar con otros centros
+	
+				double dist_centro = dist_euclidiana(Lista[i], centro_prueba);
+				double dist_actual = dist_euclidiana(Lista[i], centro_actual);
+	
+				if(dist_centro < dist_actual){
+					centro_actual = centro_prueba;
+					num_centro = j;
+				}
+			}
+			
+			asociada[i]= num_centro;
+			cout << "El punto " << endl;
+			Lista[i].print_punto();
+	
+	
+			//cout << "Centro de punto " << i << " es" <<endl;	
+			//centro_actual.print_punto();	
+			cout << " esta asociado al centro " << num_centro << endl; 	
+		}
 
 
 // Recalcular Centros
 
-	// Calcular los nuevos centros
-	punto_3D T_C = punto_3D (0,0,0);
-	for(int k = 0; k < centroides.size() ; k++){
-		for (int n = 0; n<asociada.size(); n++){
-			if(asociada[n] = k){
-				T_C = T_C + Lista[n]; 
+		// Calcular los nuevos centros
+		punto_3D T_C = punto_3D (0,0,0);
+		for(int k = 0; k < centroides.size() ; k++){
+			for (int n = 0; n<asociada.size(); n++){
+				if(asociada[n] = k){
+					T_C = T_C + Lista[n]; 
+				}
+			T_C = T_C / asociada.size();
+			centroides[k] = T_C;
 			}
-		T_C = T_C / asociada.size();
-		centroides[k] = T_C;
 		}
 	}
-
 
 return 0;
 
