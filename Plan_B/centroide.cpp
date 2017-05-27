@@ -11,7 +11,7 @@ using namespace std;
 class centroide {
 	private:
 		punto_3D id;
-		vector <punto_3D> puntos_asociados
+		vector <punto_3D> puntos_asociados;
 
 	public:
 		centroide (punto_3D);
