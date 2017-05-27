@@ -48,12 +48,12 @@ int main () {
 
 // Creando una lista de centros
 	vector<punto_3D> centroides;		// Vector que contiene los centros
-	Lista_centro.push_back(C1);
-	Lista_centro.push_back(C2);
-	Lista_centro.push_back(C3);
+	centroides.push_back(C1);
+	centroides.push_back(C2);
+	centroides.push_back(C3);
 
 	punto_3D centro_actual = centroides[0]; // Para decir a cual centro pertenecen
-	int num_centro = j			// Variable elige cual posición del centro en el vector centroides
+	int num_centro = 0;				// Variable elige cual posición del centro en el vector centroides
 	vector<int> asociada ;			//  Lista que me dice a cual centro pertenece el cada punto (1,2,3,1)
 
 
@@ -61,14 +61,14 @@ int main () {
 	for(int i = 0; i< Lista.size(); i ++) {
 		for(int j = 0; j< centroides.size(); j++){
 
-			punto_3D centro_prueba = Lista_centro[j]; 	// Para comparar con otros centros
+			punto_3D centro_prueba = centroides[j]; 	// Para comparar con otros centros
 
 			double dist_centro = dist_euclidiana(Lista[i], centro_prueba);
 			double dist_actual = dist_euclidiana(Lista[i], centro_actual);
 
 			if(dist_centro < dist_actual){
 				centro_actual = centro_prueba;
-				int num_centro = j;
+				num_centro = j;
 			}
 		}
 		
