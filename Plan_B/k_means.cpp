@@ -78,14 +78,29 @@ int main () {
 		}
 		
 		asociada.push_back(num_centro);
+		cout << "El punto " << endl;
+		Lista[i].print_punto();
+
 
 		//cout << "Centro de punto " << i << " es" <<endl;	
 		//centro_actual.print_punto();	
-	}		
+		cout << " esta asociado al centro " << num_centro << endl; 	
+	
 
 
 // Recalcular Centros
 
+	// Calcular los nuevos centros
+	punto_3D T_C = punto_3D (0,0,0);
+	for(int k = 0; k < centroides.size() ; k++){
+		for (int n = 0; n<asociada.size(); n++){
+			if(asociada[n] = k){
+				T_C = T_C + Lista[n]; 
+			}
+		T_C = T_C / asociada.size();
+		centroides[k] = T_C;
+		}
+	}
 
 
 return 0;
