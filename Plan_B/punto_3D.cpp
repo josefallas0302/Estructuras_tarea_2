@@ -5,9 +5,9 @@ using namespace std;
 
 	punto_3D::punto_3D (double x, double y, double z) {
 		//vector <double> Lista;
-		componentes.push_back(z);
+		componentes.push_back(x);
 		componentes.push_back(y);
-		componentes.push_back(x);	
+		componentes.push_back(z);	
 	}
 
 	double punto_3D :: comp_x(void)	{
@@ -33,3 +33,12 @@ using namespace std;
 
 		cout << "X = " << x << " Y = " << y << " Z = " << z << endl;    
 	}
+
+	punto_3D punto_3D:: operator + (punto_3D a) {
+		return punto_3D(componentes[0]+a.componentes[0], componentes[1]+a.componentes[1], componentes[2]+a.componentes[2]);
+	}
+
+	punto_3D punto_3D:: operator / (int a) {
+		return punto_3D(componentes[0]/a , componentes[1] /a , componentes[2]/a);
+	}
+

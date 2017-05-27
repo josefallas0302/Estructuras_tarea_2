@@ -22,6 +22,10 @@ class punto_3D {
 		double comp_z(void);
 		
 		void print_punto (void);
+
+		punto_3D operator + (punto_3D);
+	
+		punto_3D operator / (int);
 		
 };
 #endif
