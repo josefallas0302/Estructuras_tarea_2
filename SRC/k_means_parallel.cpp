@@ -125,7 +125,7 @@ int main () {
 	}
 
 // Recalcular Centros
-
+		int contador = 0;
 		// Calcular los nuevos centros
 		punto_3D T_C = punto_3D (0,0,0);
 		for(int k = 0; k < centroides.size() ; k++){
@@ -133,7 +133,7 @@ int main () {
 			for (int n = 0; n<asociada.size(); n++){
 				cout << " Asociada[n] es " << asociada[n] << endl;
 				if(asociada[n] == k){
-
+					contador = contador + 1;
 //					cout << "punto " << n << " esta asociada al centro " << k  <<endl;
 					T_C = T_C + Lista[n];
 					cout << "hit" << endl;
@@ -141,8 +141,12 @@ int main () {
 				}
 			}
 		
-			T_C = T_C / 3 ;
+			if (contador != 0 ){
+			T_C = T_C / contador ;
 			centroides[k] = T_C;
+			}else{
+			// NO Hago nada se queda el mismo centroide anteriior
+			}
 			cout<< "**********************************************" <<endl;
 			cout << "Centro " << k << " es" <<endl;
 			centroides[k].print_punto();
