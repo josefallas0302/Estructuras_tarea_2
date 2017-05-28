@@ -62,17 +62,30 @@ int main () {
 
 	vector<int> asociada;			//  Lista que me dice a cual centro pertenece el cada punto (1,2,3,1)
 	for (int i = 0 ; i<Lista.size(); i++){
-		asociada.push_back(0);
+		asociada.push_back(4);
 	}
 
 	vector<int> copia;			// Para saber si tengo que seguir iterando
 
 	for (int i = 0 ; i<Lista.size(); i++){
-		copia.push_back(1);
+		copia.push_back(3);
 	}
 
+
+
+	cout << "puntelitos" <<endl;
+
+	for(int h = 0 ; h <  Lista.size(); h++){
+		Lista[h].print_punto();
+	}
+
+	int contador = 0;
 	while(asociada != copia){
-	
+	cout <<"----------------------------------------------------------"<<endl;
+
+	cout << "iteracion" << contador <<endl; 
+	cout <<"----------------------------------------------------------"<<endl;
+	contador ++;
 	copia = asociada;
 
 // Asignar los centros
@@ -87,33 +100,49 @@ int main () {
 				if(dist_centro < dist_actual){
 					centro_actual = centro_prueba;
 					num_centro = j;
+					}
 				}
-			}
 			
 			asociada[i]= num_centro;
-			cout << "El punto " << endl;
-			Lista[i].print_punto();
+		//	cout << "El punto " << endl;
+		//	Lista[i].print_punto();
 	
 	
 			//cout << "Centro de punto " << i << " es" <<endl;	
 			//centro_actual.print_punto();	
-			cout << " esta asociado al centro " << num_centro << endl; 	
+		//	cout << " esta asociado al centro " << num_centro << endl; 	
 		}
 
+		cout << "Lista asociada es" <<endl;
+		for(int i = 0; i< Lista.size(); i ++) {
+			cout << asociada[i] << endl;
+		}
 
 // Recalcular Centros
 
 		// Calcular los nuevos centros
 		punto_3D T_C = punto_3D (0,0,0);
 		for(int k = 0; k < centroides.size() ; k++){
+				cout << " k " << k <<endl;
 			for (int n = 0; n<asociada.size(); n++){
-				if(asociada[n] = k){
-					T_C = T_C + Lista[n]; 
+				cout << " Asociada[n] es " << asociada[n] << endl;
+				if(asociada[n] == k){
+
+//					cout << "punto " << n << " esta asociada al centro " << k  <<endl;
+					T_C = T_C + Lista[n];
+					cout << "hit" << endl;
+					//T_C.print_punto();
 				}
-			T_C = T_C / asociada.size();
-			centroides[k] = T_C;
 			}
+		
+			T_C = T_C / 3 ;
+			centroides[k] = T_C;
+			cout<< "**********************************************" <<endl;
+			cout << "Centro " << k << " es" <<endl;
+			centroides[k].print_punto();
+			cout<< "**********************************************" <<endl;
 		}
+		
 	}
 
 return 0;
