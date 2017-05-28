@@ -6,8 +6,8 @@
 #include "punto_3D.h"
 #include <stdlib.h>
 #include <time.h>
+#include <thread>
 #include <ctime>
-
 
 using namespace std;
 
@@ -22,6 +22,26 @@ int dist_euclidiana (punto_3D a, punto_3D centro){
 	return distancia;
 }
 
+void next_centroide(vector<punto_3D> Lista, vector<punto_3D> centroides, int j, int data_num, vector<int>& asociada){
+	punto_3D centro_actual = centroides[0]; // Para decir a cual centro pertenecen
+	int num_centro = 0;			// Variable elige cual posición del centro en el vector centroides
+	for(int i = 0; i< data_num; i ++) {
+	
+		punto_3D centro_prueba = centroides[j]; 	// Para comparar con otros centros
+	
+		double dist_centro = dist_euclidiana(Lista[i], centro_prueba);
+		double dist_actual = dist_euclidiana(Lista[i], centro_actual);
+	
+		if(dist_centro < dist_actual){
+			centro_actual = centro_prueba;
+			num_centro = j;
+		}
+			
+	asociada[i]= num_centro;
+	//cout << "El punto " << endl;
+	//Lista[i].print_punto();
+	}
+}
 
 int main () {
 	unsigned t0, t1;
@@ -33,6 +53,8 @@ int main () {
 	cin >> data_num; 
 	cout << "Introduzca el número de centroides con los cual se va a trabajar" << endl;
 	cin >> centroide_num; 
+
+	std::thread t[centroide_num];
 
 	vector<punto_3D> Lista; //Lista de datos
 
@@ -92,34 +114,15 @@ int main () {
 	copia = asociada;
 
 // Asignar los centros
-		for(int i = 0; i< Lista.size(); i ++) {
-			for(int j = 0; j< centroides.size(); j++){
-	
-				punto_3D centro_prueba = centroides[j]; 	// Para comparar con otros centros
-	
-				double dist_centro = dist_euclidiana(Lista[i], centro_prueba);
-				double dist_actual = dist_euclidiana(Lista[i], centro_actual);
-	
-				if(dist_centro < dist_actual){
-					centro_actual = centro_prueba;
-					num_centro = j;
-					}
-				}
-			
-			asociada[i]= num_centro;
-		//	cout << "El punto " << endl;
-		//	Lista[i].print_punto();
-	
-	
-			//cout << "Centro de punto " << i << " es" <<endl;	
-			//centro_actual.print_punto();	
-		//	cout << " esta asociado al centro " << num_centro << endl; 	
-		}
+	for(int j = 0; j< centroides.size(); j++){
+		t[j] = std::thread(next_centroide, Lista, centroides, j, data_num, std::ref(asociada));
+	}
 
-		cout << "Lista asociada es" <<endl;
-		for(int i = 0; i< Lista.size(); i ++) {
-			cout << asociada[i] << endl;
-		}
+	//std::cout << "Launched from the main\n";
+
+	for (int j = 0; j < centroide_num; ++j) {
+        	t[j].join();
+	}
 
 // Recalcular Centros
 
