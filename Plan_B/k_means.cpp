@@ -71,6 +71,14 @@ int main () {
 		copia.push_back(3);
 	}
 
+
+
+	cout << "puntelitos" <<endl;
+
+	for(int h = 0 ; h <  Lista.size(); h++){
+		Lista[h].print_punto();
+	}
+
 	int contador = 0;
 	while(asociada != copia){
 	cout <<"----------------------------------------------------------"<<endl;
@@ -118,10 +126,11 @@ int main () {
 				cout << " k " << k <<endl;
 			for (int n = 0; n<asociada.size(); n++){
 				cout << " Asociada[n] es " << asociada[n] << endl;
-				if(asociada[n] = k){
+				if(asociada[n] == k){
 
 //					cout << "punto " << n << " esta asociada al centro " << k  <<endl;
 					T_C = T_C + Lista[n];
+					cout << "hit" << endl;
 					//T_C.print_punto();
 				}
 			}
