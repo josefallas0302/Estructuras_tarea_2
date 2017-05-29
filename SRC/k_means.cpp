@@ -8,6 +8,9 @@
 #include <time.h>
 #include <ctime>
 
+
+using namespace std;
+
 void print_list(vector <int> lista) {
 		for(int i = 0; i< lista.size(); i++ ){
 			  cout << lista[i]  << " ";
@@ -15,7 +18,11 @@ void print_list(vector <int> lista) {
 		cout << endl;
 	}
 
-using namespace std;
+void print_list_3D (vector <punto_3D> puntos){
+		for(int i = 0; i<puntos.size() ; i++){
+			puntos[i].print_punto();
+		}	
+	}
 
 int dist_euclidiana (punto_3D a, punto_3D centro){
 	double x = a.comp_x() - centro.comp_x() ;
@@ -51,6 +58,8 @@ int main () {
 		punto_3D a  = punto_3D(x1, x2, x3);
 		Lista.push_back(a);
 	}
+	cout << " \n Lista de Puntos  \n " << endl;
+	print_list_3D(Lista); // Imprime la lista de puntos 3D
 
  
 	vector<punto_3D> centroides; //Lista de centroides
@@ -84,9 +93,9 @@ int main () {
 
 	//cout << "puntelitos" <<endl;
 
-	for(int h = 0 ; h <  Lista.size(); h++){
-		Lista[h].print_punto();
-	}
+	//for(int h = 0 ; h <  Lista.size(); h++){
+	//	Lista[h].print_punto();
+	//}
 
 	int contador = 0;
 	while(asociada != copia){
