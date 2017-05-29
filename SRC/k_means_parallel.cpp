@@ -9,6 +9,17 @@
 #include <thread>
 #include <ctime>
 
+void print_list(vector <int> lista) {
+		for(int i = 0; i< lista.size(); i++ ){
+			  cout << lista[i]  << " ";
+		}
+		cout << endl;
+	}
+
+void print_list_3D (vector <punto_3D>){
+	
+	}
+
 using namespace std;
 
 int dist_euclidiana (punto_3D a, punto_3D centro){
@@ -98,11 +109,11 @@ int main () {
 
 
 
-	cout << "puntelitos" <<endl;
+	//cout << "puntelitos" <<endl;
 
-	for(int h = 0 ; h <  Lista.size(); h++){
-		Lista[h].print_punto();
-	}
+//	for(int h = 0 ; h <  Lista.size(); h++){
+//		Lista[h].print_punto();
+//	}
 
 	int contador = 0;
 	while(asociada != copia){
@@ -124,19 +135,23 @@ int main () {
         	t[j].join();
 	}
 
+		cout << "Lista asociada es" <<endl;
+		print_list(asociada); 
+	
+
 // Recalcular Centros
 		int contador = 0;
 		// Calcular los nuevos centros
 		punto_3D T_C = punto_3D (0,0,0);
 		for(int k = 0; k < centroides.size() ; k++){
-				cout << " k " << k <<endl;
+				//cout << " k " << k <<endl;
 			for (int n = 0; n<asociada.size(); n++){
-				cout << " Asociada[n] es " << asociada[n] << endl;
+				//cout << " Asociada[n] es " << asociada[n] << endl;
 				if(asociada[n] == k){
 					contador = contador + 1;
-//					cout << "punto " << n << " esta asociada al centro " << k  <<endl;
+					//cout << "punto " << n << " esta asociada al centro " << k  <<endl;
 					T_C = T_C + Lista[n];
-					cout << "hit" << endl;
+					//cout << "hit" << endl;
 					//T_C.print_punto();
 				}
 			}
