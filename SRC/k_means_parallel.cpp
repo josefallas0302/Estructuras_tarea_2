@@ -9,6 +9,9 @@
 #include <thread>
 #include <ctime>
 
+
+using namespace std;
+
 void print_list(vector <int> lista) {
 		for(int i = 0; i< lista.size(); i++ ){
 			  cout << lista[i]  << " ";
@@ -16,11 +19,12 @@ void print_list(vector <int> lista) {
 		cout << endl;
 	}
 
-void print_list_3D (vector <punto_3D>){
-	
+void print_list_3D (vector <punto_3D> puntos){
+		for(int i = 0; i<puntos.size() ; i++){
+			puntos[i].print_punto();
+		}	
 	}
 
-using namespace std;
 
 int dist_euclidiana (punto_3D a, punto_3D centro){
 	double x = a.comp_x() - centro.comp_x() ;
@@ -32,6 +36,7 @@ int dist_euclidiana (punto_3D a, punto_3D centro){
 
 	return distancia;
 }
+
 
 void next_centroide(vector<punto_3D> Lista, vector<punto_3D> centroides, int j, int data_num, vector<int>& asociada){
 	punto_3D centro_actual = centroides[0]; // Para decir a cual centro pertenecen
@@ -79,6 +84,9 @@ int main () {
 		Lista.push_back(a);
 	}
 
+	cout << " \n Lista de Puntos  \n " << endl;
+	print_list_3D(Lista); // Imprime la lista de puntos 3D
+
  
 	vector<punto_3D> centroides; //Lista de centroides
 
@@ -119,7 +127,7 @@ int main () {
 	while(asociada != copia){
 	cout <<"----------------------------------------------------------"<<endl;
 
-	cout << "iteracion" << contador <<endl; 
+	cout << "                     iteracion " << contador <<endl; 
 	cout <<"----------------------------------------------------------"<<endl;
 	contador ++;
 	copia = asociada;
