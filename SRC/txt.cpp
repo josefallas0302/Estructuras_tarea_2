@@ -11,7 +11,7 @@ using namespace std;
 
 int main(){
 
-/*	for(int i=0; i<1000; i++){
+	for(int i=0; i<3; i++){
 		double x1 = (0+rand()%(10000-0))*0.13;
 		double x2 = (0+rand()%(10000-0))*0.7;
 		double x3 = (0+rand()%(10000-0))*0.11;
@@ -19,9 +19,9 @@ int main(){
 		cout << x1 << endl;
 		cout << x2 << endl;
 		cout << x3 << endl;
-	}*/
+	}
 
-	fstream ficheroEntrada1;
+	/*fstream ficheroEntrada1;
 	string nombre1 ("prueba.txt");
 	string frase1;
 	string cortado1;
@@ -34,7 +34,7 @@ int main(){
 			double numero = atof(frase1.c_str());
 			cout << numero << endl;
 		}
-	}
+	}*/
 
 
 return 0;

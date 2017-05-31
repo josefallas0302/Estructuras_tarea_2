@@ -37,8 +37,6 @@ int dist_euclidiana (punto_3D a, punto_3D centro){
 
 
 int main () {
-	unsigned t0, t1;
-	t0=clock();
 
 	int data_num; //data_num es la cantidad de datos con la que se esta trabajando
 	int centroide_num; //centroide_num es la cantidad de centroides con la que se esta trabajando
@@ -46,6 +44,9 @@ int main () {
 	cin >> data_num; 
 	cout << "Introduzca el número de centroides con los cual se va a trabajar" << endl;
 	cin >> centroide_num; 
+
+	unsigned t0, t1;
+	t0=clock();
 
 	vector<punto_3D> Lista; //Lista de datos
 
@@ -97,14 +98,15 @@ int main () {
 	//	Lista[h].print_punto();
 	//}
 
-	int contador = 0;
+	int contador;
+	int sum = 0;
 	while(asociada != copia){
 	cout <<"----------------------------------------------------------"<<endl;
 
-	cout << "iteracion" << contador <<endl; 
+	cout << "                  iteracion" << sum <<endl; 
 	cout <<"----------------------------------------------------------"<<endl;
-	contador ++;
 	copia = asociada;
+	sum = sum+1;
 
 // Asignar los centros
 		for(int i = 0; i< Lista.size(); i ++) {
@@ -136,7 +138,7 @@ int main () {
 	
 
 // Recalcular Centros
-		int contador = 0;
+		contador = 0;
 		// Calcular los nuevos centros
 		punto_3D T_C = punto_3D (0,0,0);
 		for(int k = 0; k < centroides.size() ; k++){

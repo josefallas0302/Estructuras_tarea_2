@@ -38,30 +38,29 @@ int dist_euclidiana (punto_3D a, punto_3D centro){
 }
 
 
-void next_centroide(vector<punto_3D> Lista, vector<punto_3D> centroides, int j, int data_num, vector<int>& asociada){
+void next_centroide(vector<punto_3D> Lista, vector<punto_3D> centroides, int centroide, int data_num, vector<int>& asociada){
+	int limit = data_num/centroides.size();
 	punto_3D centro_actual = centroides[0]; // Para decir a cual centro pertenecen
 	int num_centro = 0;			// Variable elige cual posición del centro en el vector centroides
-	for(int i = 0; i< data_num; i ++) {
+		for(int i = centroide*limit; i< (centroide+1)*limit; i ++) {
+			for(int j = 0; j< centroides.size(); j++){
 	
-		punto_3D centro_prueba = centroides[j]; 	// Para comparar con otros centros
+				punto_3D centro_prueba = centroides[j]; 	// Para comparar con otros centros
 	
-		double dist_centro = dist_euclidiana(Lista[i], centro_prueba);
-		double dist_actual = dist_euclidiana(Lista[i], centro_actual);
+				double dist_centro = dist_euclidiana(Lista[i], centro_prueba);
+				double dist_actual = dist_euclidiana(Lista[i], centro_actual);
 	
-		if(dist_centro < dist_actual){
-			centro_actual = centro_prueba;
-			num_centro = j;
-		}
+				if(dist_centro < dist_actual){
+					centro_actual = centro_prueba;
+					num_centro = j;
+					}
+				}
 			
-	asociada[i]= num_centro;
-	//cout << "El punto " << endl;
-	//Lista[i].print_punto();
+			asociada[i]= num_centro;
 	}
 }
 
 int main () {
-	unsigned t0, t1;
-	t0=clock();
 
 	int data_num; //data_num es la cantidad de datos con la que se esta trabajando
 	int centroide_num; //centroide_num es la cantidad de centroides con la que se esta trabajando
@@ -69,6 +68,9 @@ int main () {
 	cin >> data_num; 
 	cout << "Introduzca el número de centroides con los cual se va a trabajar" << endl;
 	cin >> centroide_num; 
+
+	unsigned t0, t1;
+	t0=clock();
 
 	std::thread t[centroide_num];
 
@@ -123,14 +125,15 @@ int main () {
 //		Lista[h].print_punto();
 //	}
 
-	int contador = 0;
+	int contador;
+	int sum = 0;
 	while(asociada != copia){
 	cout <<"----------------------------------------------------------"<<endl;
 
-	cout << "                     iteracion " << contador <<endl; 
+	cout << "                     iteracion " << sum <<endl; 
 	cout <<"----------------------------------------------------------"<<endl;
-	contador ++;
 	copia = asociada;
+	sum = sum+1;
 
 // Asignar los centros
 	for(int j = 0; j< centroides.size(); j++){
@@ -148,7 +151,7 @@ int main () {
 	
 
 // Recalcular Centros
-		int contador = 0;
+		contador = 0;
 		// Calcular los nuevos centros
 		punto_3D T_C = punto_3D (0,0,0);
 		for(int k = 0; k < centroides.size() ; k++){
