@@ -218,9 +218,11 @@ int main () {
 		
 	}
 
+	t1=clock();
+
 	//Se calcula el tiempo de ejecucion del programa
 	double time = (double(t1-t0)/CLOCKS_PER_SEC);
-	cout << "Execution Time: " << time << endl;
+	cout << "Execution Time in parallel: " << time << endl;
 
 return 0;
 

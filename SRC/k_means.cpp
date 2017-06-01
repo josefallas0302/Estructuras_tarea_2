@@ -174,9 +174,11 @@ int main () {
 		
 	}
 
+	t1=clock();	
+
 	//Calculo del tiempo de ejecucion
 	double time = (double(t1-t0)/CLOCKS_PER_SEC);
-	cout << "Execution Time: " << time << endl;
+	cout << "Execution Time in serie: " << time << endl;
 
 return 0;
 
