@@ -41,10 +41,10 @@ int dist_euclidiana (punto_3D a, punto_3D centro){
 
 
 void next_centroide(vector<punto_3D> Lista, vector<punto_3D> centroides, int centroide, int data_num, vector<int>& asociada){
-	int limit = data_num/centroides.size();
+	int limit = data_num/(centroides.size()+1);
 	punto_3D centro_actual = centroides[0]; // Para decir a cual centro pertenecen
 	int num_centro = 0;			// Variable elige cual posición del centro en el vector centroides
-		for(int i = centroide*limit; i<= (centroide+1)*limit; i ++) {
+		for(int i = centroide*limit; i<= ((centroide+1)*limit)+1; i ++) {
 			for(int j = 0; j< centroides.size(); j++){
 	
 				punto_3D centro_prueba = centroides[j]; 	// Para comparar con otros centros
@@ -64,12 +64,15 @@ void next_centroide(vector<punto_3D> Lista, vector<punto_3D> centroides, int cen
 
 int main () {
 
-	int data_num; //data_num es la cantidad de datos con la que se esta trabajando
+	/*int data_num; //data_num es la cantidad de datos con la que se esta trabajando
 	int centroide_num; //centroide_num es la cantidad de centroides con la que se esta trabajando
 	cout << "Introduzca el número de datos con los cual se va a trabajar" << endl;
 	cin >> data_num; 
 	cout << "Introduzca el número de centroides con los cual se va a trabajar" << endl;
-	cin >> centroide_num; 
+	cin >> centroide_num; */
+
+	int data_num = 30; //data_num es la cantidad de datos con la que se esta trabajando
+	int centroide_num = 3; //centroide_num es la cantidad de centroides con la que se esta trabajando
 
 	unsigned t0, t1;
 	t0=clock();
@@ -80,7 +83,7 @@ int main () {
 
 	//Crea un vector de punto_3D (datos) leyendo un .txt
 	fstream ficheroEntrada1;
-	string nombre1 ("prueba.txt");
+	string nombre1 ("prueba1.txt");
 	string frase1;
 	double punto[3];
 	ficheroEntrada1.open ( nombre1.c_str() , ios::in);
@@ -101,7 +104,6 @@ int main () {
 		double x1 = (0+rand()%(10000-0))*0.13;
 		double x2 = (0+rand()%(10000-0))*0.7;
 		double x3 = (0+rand()%(10000-0))*0.11;
-
 		punto_3D a  = punto_3D(x1, x2, x3);
 		Lista.push_back(a);
 	}*/
@@ -121,8 +123,8 @@ int main () {
 	if (ficheroEntrada2.is_open()) {
 		for(int j=0; j<centroide_num; j++){
 			for(int i=0; i<3; i++){
-				getline (ficheroEntrada1,frase1);
-				double numero = atof(frase1.c_str());
+				getline (ficheroEntrada2,frase2);
+				double numero = atof(frase2.c_str());
 				punto2[i] = numero;
 			}
 		punto_3D a = punto_3D(punto2[0], punto2[1], punto2[2]);
@@ -176,6 +178,24 @@ int main () {
 // Asignar los centros
 	for(int j = 0; j< centroides.size(); j++){
 		t[j] = std::thread(next_centroide, Lista, centroides, j, data_num, std::ref(asociada));
+	}
+
+	int limit = data_num/(centroides.size()+1);
+	for(int i = (centroides.size()*limit)-1; i< Lista.size(); i ++) {
+		for(int j = 0; j< centroides.size(); j++){
+	
+			punto_3D centro_prueba = centroides[j]; 	// Para comparar con otros centros
+	
+			double dist_centro = dist_euclidiana(Lista[i], centro_prueba);
+			double dist_actual = dist_euclidiana(Lista[i], centro_actual);
+	
+			if(dist_centro < dist_actual){
+				centro_actual = centro_prueba;
+				num_centro = j;
+				}
+			}
+			
+		asociada[i]= num_centro;
 	}
 
 	//std::cout << "Launched from the main\n";

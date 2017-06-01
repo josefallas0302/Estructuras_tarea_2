@@ -41,12 +41,15 @@ int dist_euclidiana (punto_3D a, punto_3D centro){
 
 int main () {
 
-	int data_num; //data_num es la cantidad de datos con la que se esta trabajando
+	/*int data_num; //data_num es la cantidad de datos con la que se esta trabajando
 	int centroide_num; //centroide_num es la cantidad de centroides con la que se esta trabajando
 	cout << "Introduzca el número de datos con los cual se va a trabajar" << endl;
 	cin >> data_num; 
 	cout << "Introduzca el número de centroides con los cual se va a trabajar" << endl;
-	cin >> centroide_num; 
+	cin >> centroide_num; */
+
+	int data_num = 30;
+	int centroide_num = 3;
 
 	unsigned t0, t1;
 	t0=clock();
@@ -55,7 +58,7 @@ int main () {
 
 	//Crea un vector de punto_3D (datos) leyendo un .txt
 	fstream ficheroEntrada1;
-	string nombre1 ("prueba.txt");
+	string nombre1 ("prueba1.txt");
 	string frase1;
 	double punto[3];
 	ficheroEntrada1.open ( nombre1.c_str() , ios::in);
@@ -96,8 +99,8 @@ int main () {
 	if (ficheroEntrada2.is_open()) {
 		for(int j=0; j<centroide_num; j++){
 			for(int i=0; i<3; i++){
-				getline (ficheroEntrada1,frase1);
-				double numero = atof(frase1.c_str());
+				getline (ficheroEntrada2,frase2);
+				double numero = atof(frase2.c_str());
 				punto2[i] = numero;
 			}
 		punto_3D a = punto_3D(punto2[0], punto2[1], punto2[2]);
