@@ -1,3 +1,21 @@
+//--------------------------------------------------------------------------
+// Filename: K_means_parallel_lectura.cpp
+// Author: Juan José Delgado Quesada
+//	   Ariel Fallas Pizarro
+// K-Means en paralelo
+// Estructuras de computadoras digitales II
+// I semestre 2017
+//--------------------------------------------------------------------------
+//
+// El siguiente código implementa el algoritmo de k-means
+// para realizar agrupamiento de datos. Esta implementacion del 
+// k-means utiliza la biblioteca de threads para paralelizar el codigo.
+// Este código lee un set de datos random para luego agruparlos. La posición
+// inicial de los centroides es generada aleatoria y leida de un archivo para luego en cada
+// iteración ir aproximando la posición adecuada de los centroides.
+//
+//--------------------------------------------------------------------------
+
 #include <iostream>
 #include <vector>
 #include <fstream>

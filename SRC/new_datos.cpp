@@ -1,3 +1,18 @@
+//--------------------------------------------------------------------------
+// Filename: new_datos.cpp
+// Author: Juan José Delgado Quesada
+//	   Ariel Fallas Pizarro
+// K-Means
+// Estructuras de computadoras digitales II
+// I semestre 2017
+//--------------------------------------------------------------------------
+//
+// El siguiente código implementa un algoritmo para generar un set de numeros random
+// En este caso se generan 3 grupos de datos random, un grupo de datos que van de
+// 0 a 100, otro de 5000 a 10000 y un ultimo de 50000 a 100000.
+//
+//--------------------------------------------------------------------------
+
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>

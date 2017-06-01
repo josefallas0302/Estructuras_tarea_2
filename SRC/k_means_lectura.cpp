@@ -1,3 +1,20 @@
+//--------------------------------------------------------------------------
+// Filename: K_means_lectura.cpp
+// Author: Juan José Delgado Quesada
+//	   Ariel Fallas Pizarro
+// K-Means
+// Estructuras de computadoras digitales II
+// I semestre 2017
+//--------------------------------------------------------------------------
+//
+// El siguiente código implementa el algoritmo de k-means
+// para realizar agrupamiento de datos. Este código lee
+// un set de datos random para luego agruparlos. La posición
+// inicial de los centroides es aleatoria, pero leida de un archivo, para luego en cada
+// iteración ir aproximando la posición adecuada de los centroides.
+//
+//--------------------------------------------------------------------------
+
 #include <iostream>
 #include <vector>
 #include <fstream>

@@ -1,3 +1,20 @@
+//--------------------------------------------------------------------------
+// Filename: K_means.cpp
+// Author: Juan José Delgado Quesada
+//	   Ariel Fallas Pizarro
+// K-Means
+// Estructuras de computadoras digitales II
+// I semestre 2017
+//--------------------------------------------------------------------------
+//
+// El siguiente código implementa el algoritmo de k-means
+// para realizar agrupamiento de datos. Este código genera
+// un set de datos random para luego agruparlos. La posición
+// inicial de los centroides es aleatoria para luego en cada
+// iteración ir aproximando la posición adecuada de los centroides.
+//
+//--------------------------------------------------------------------------
+
 #include <iostream>
 #include <vector>
 #include <fstream>
@@ -11,6 +28,7 @@
 
 using namespace std;
 
+// Método para imprimir listas
 void print_list(vector <int> lista) {
 		for(int i = 0; i< lista.size(); i++ ){
 			  cout << lista[i]  << " ";
@@ -18,12 +36,14 @@ void print_list(vector <int> lista) {
 		cout << endl;
 	}
 
+// Método para imprimir listas a partir de los elementos de la clase punto_3D
 void print_list_3D (vector <punto_3D> puntos){
 		for(int i = 0; i<puntos.size() ; i++){
 			puntos[i].print_punto();
 		}	
 	}
 
+// Método para calcular la distancia euclidiana entre dos puntos de 3 dimensiones cada uno
 int dist_euclidiana (punto_3D a, punto_3D centro){
 	double x = a.comp_x() - centro.comp_x() ;
 	double y = a.comp_y() - centro.comp_y() ;
@@ -38,6 +58,7 @@ int dist_euclidiana (punto_3D a, punto_3D centro){
 
 int main () {
 
+	
 	int data_num; //data_num es la cantidad de datos con la que se esta trabajando
 	int centroide_num; //centroide_num es la cantidad de centroides con la que se esta trabajando
 	cout << "Introduzca el número de datos con los cual se va a trabajar" << endl;
@@ -45,6 +66,7 @@ int main () {
 	cout << "Introduzca el número de centroides con los cual se va a trabajar" << endl;
 	cin >> centroide_num; 
 
+	//Inicia a medir el tiempo de ejecucion
 	unsigned t0, t1;
 	t0=clock();
 
@@ -90,25 +112,20 @@ int main () {
 		copia.push_back(3);
 	}
 
+	int contador; //para sacar el promedio de los datos sumados en el calculo de la nueva posicion del centroide
+	int sum = 0; //para saber en cual iteracion se esta
 
-
-	//cout << "puntelitos" <<endl;
-
-	//for(int h = 0 ; h <  Lista.size(); h++){
-	//	Lista[h].print_punto();
-	//}
-
-	int contador;
-	int sum = 0;
 	while(asociada != copia){
+
 	cout <<"----------------------------------------------------------"<<endl;
 
 	cout << "                  iteracion" << sum <<endl; 
 	cout <<"----------------------------------------------------------"<<endl;
+
 	copia = asociada;
 	sum = sum+1;
 
-// Asignar los centros
+// Asignar a cada dato el centro mas cercano
 		for(int i = 0; i< Lista.size(); i ++) {
 			for(int j = 0; j< centroides.size(); j++){
 	
@@ -124,33 +141,21 @@ int main () {
 				}
 			
 			asociada[i]= num_centro;
-		//	cout << "El punto " << endl;
-		//	Lista[i].print_punto();
-	
-	
-			//cout << "Centro de punto " << i << " es" <<endl;	
-			//centro_actual.print_punto();	
-		//	cout << " esta asociado al centro " << num_centro << endl; 	
 		}
 
 		cout << "Lista asociada es" <<endl;
 		print_list(asociada); 
 	
 
-// Recalcular Centros
+// Recalcular la posicion de los centros en funcion de los datos asociados a el
 		contador = 0;
 		// Calcular los nuevos centros
 		punto_3D T_C = punto_3D (0,0,0);
 		for(int k = 0; k < centroides.size() ; k++){
-				//cout << " k " << k <<endl;
 			for (int n = 0; n<asociada.size(); n++){
-				//cout << " Asociada[n] es " << asociada[n] << endl;
 				if(asociada[n] == k){
 					contador = contador + 1;
-//					//cout << "punto " << n << " esta asociada al centro " << k  <<endl;
 					T_C = T_C + Lista[n];
-					//cout << "hit" << endl;
-					//T_C.print_punto();
 				}
 			}
 			if (contador != 0 ){
@@ -159,14 +164,17 @@ int main () {
 			}else{
 			// NO Hago nada se queda el mismo centroide anteriior
 			}
+
 			cout<< "**********************************************" <<endl;
 			cout << "Centro " << k << " es" <<endl;
 			centroides[k].print_punto();
 			cout<< "**********************************************" <<endl;
+
 		}
 		
 	}
 
+	//Calculo del tiempo de ejecucion
 	double time = (double(t1-t0)/CLOCKS_PER_SEC);
 	cout << "Execution Time: " << time << endl;
 
